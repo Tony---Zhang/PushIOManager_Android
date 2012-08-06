@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Push IO Manager by pushio</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Push IO Manager</h1>
+        <p>Android Integration Guide</p>
+
+        <p class="view"><a href="https://github.com/pushio/PushIOManager_Android">View the Project on GitHub <small>pushio/PushIOManager_Android</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/pushio/PushIOManager_Android/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pushio/PushIOManager_Android/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pushio/PushIOManager_Android">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://push.io/wp-content/uploads/2012/05/pushio_logo.png" alt="Push IO®"></p>
+
+<p>Copyright © 2009 - 2012 Push IO LLC. All Rights Reserved.<br>
+Push IO® is a registered trademark in the United States. All other trademarks are the property of their respective owners.</p>
+
+<h4>Software License Information</h4>
+
+<p>The use of any and all Push IO software regardless of release state is governed by the terms of a Software License Agreement and Terms of Use that are not included here but required by reference. </p>
+
+<h4>Privacy Information</h4>
+
+<p>The use of Push IO services is subject to various privacy policies and restrictions on the use of end user information. For complete information please refer to your Master Agreement, our website privacy policies, and/or other related documents.</p>
+
+<h4>Billing</h4>
+
+<p>For information on your account and billing, please contact <a href="mailto:sales@push.io">sales@push.io</a></p>
+
+<h4>Contact Info</h4>
+
+<p>Push IO<br>
+1035 Pearl Street, Suite 400<br>
+Boulder, CO 80302 USA<br>
+303-335-0903<br><a href="mailto:support@push.io">support@push.io</a><br><a href="http://www.push.io">www.push.io</a>   </p>
+
+<h2>Preface</h2>
+
+<p>Push IO is a leading provider of real-time push notification alerts and mobile data delivery.This document provides the necessary information to leverage Push IO for your mobile application. This document corresponds to the latest version of PushIOManager for Android.</p>
+
+<h2>Definitions</h2>
+
+<h4>UUID</h4>
+
+<p>A unique identifier corresponding to a specific device that is used to register with the Push IO service.</p>
+
+<h4>Category</h4>
+
+<p>A category defines a specific content type that your app has which users might  be interested in. For example, if your app is a sports app, a category may be a specific team. </p>
+
+<h4>Audience</h4>
+
+<p>An audience defines a group of users based on one or more categories or platforms. For example, you might make an audience out of all of the users who have registered to a category for a team in the Western Conference who are using your app on Android.</p>
+
+<h4>Test Device</h4>
+
+<p>A device specially registered with Push IO to help you troubleshoot, test, and preview push notifications.</p>
+
+<h2>App Integration</h2>
+
+<h4>Overview</h4>
+
+<p>Push IO provides a lightweight PushIOManager library for each supported platform. </p>
+
+<p>The library provides simple methods for registering so Push IO can send push notifications to a device via the platform gateway. The library also provides interfaces for segmenting your users into groups called categories. This allows you to send targeted push notifications only to those users who have expressed an interest in <em>bird watching</em>, and then perhaps only users who are interested in <em>robins</em>.</p>
+
+<p>Push IO is the only push notification provider which provides data that allows you to understand how push notification engagement leads your users to high-value actions like in-app purchases, premium content viewing, and more. The PushIOManager library provides a simple mechanism to capture this push conversion information, which is available to you via the <a href="https://manage.push.io">Push IO Manager</a> dashboard.</p>
+
+<h4>Integration Prerequisites</h4>
+
+<p>Before continuing, be sure you have what you need to integrate Push IO into your app.</p>
+
+<ol>
+<li>Sign Up for a Push IO account at <a href="https://manage.push.io">https://manage.push.io</a>
+</li>
+<li>Download our Push IO Mobile Dashboard app to easily send your first push!</li>
+<li>Obtain a service ID and API key for Google's <a href="http://developer.android.com/guide/google/gcm/gs.html">GCM</a> service</li>
+<li>Setup your app and add an Android platform at <a href="https://manage.push.io">https://manage.push.io</a>
+</li>
+<li>Downloaded PushIOManager for Android and pushio_config.json from <a href="https://manage.push.io">Set Up &gt; Android</a>
+</li>
+</ol><p><img src="http://pushiocdn.s3.amazonaws.com/docs_assets/platformdetail_android.png" alt="Platform download"></p>
+
+<p>All set? Now you’re ready to integrate Push IO into your app!</p>
+
+<h2>PushIOManager for Android</h2>
+
+<p>In order to add the PushIOManager JAR to your Android application, follow these simple steps:</p>
+
+<ul>
+<li>Locate the two files you downloaded from Set Up &gt; Android from the Push IO Manager dashboard.</li>
+</ul><p><img src="http://pushiocdn.s3.amazonaws.com/docs_assets/files_android.png" alt="Downloads"></p>
+
+<ul>
+<li><p>Add the PushIOManager.jar to your project’s libs folder.</p></li>
+<li><p>Drag pushio_config.json file to your project.</p></li>
+</ul><blockquote>
+<p>The pushio_config.json must be in your application bundle in order for the PushIOManager read your API key and properly connect to the backend service.</p>
+</blockquote>
+
+<ul>
+<li>Now you need to set up your Android Manifest. The following user-permissions are required to use Google Cloud Messaging (replace com.example with your application namespace). </li>
+</ul><div class="highlight"><pre>    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span>  <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.permission.C2D_MESSAGE"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.permission.INTERNET"</span><span class="o">/&gt;</span>
+
+     <span class="o">&lt;</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.permission.C2D_MESSAGE"</span> <span class="nl">android:</span><span class="n">protectionLevel</span><span class="o">=</span><span class="s">"signature"</span> <span class="o">/&gt;</span>
+</pre></div>
+
+<ul>
+<li>In the Android Manifest under the “application” tag you need to set up the PushIOBroadcastReceiver. (Once again replace com.example for your application namespace.)</li>
+</ul><blockquote>
+<p>Even though Google has moved from C2DM to CCM the permissions still use the   c2dm name for backward compatibility with older devices.</p>
+</blockquote>
+
+<div class="highlight"><pre><span class="o">&lt;</span><span class="n">receiver</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOBroadcastReceiver"</span> <span class="nl">android:</span><span class="n">permission</span><span class="o">=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">action</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">action</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.google.android.c2dm.intent.REGISTRATION"</span> <span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">category</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example"</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">receiver</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOActivityLauncher"</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">service</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOGCMIntentService"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">service</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOEngagementService"</span><span class="o">/&gt;</span>
+</pre></div>
+
+<ul>
+<li>Set-up the ensureRegistration call when the application is first starting. This will ensure that registration is maintained between upgrades of the application. </li>
+</ul><div class="highlight"><pre>     <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
+        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+      <span class="n">pushIOManager</span><span class="o">.</span><span class="na">ensureRegistration</span><span class="o">();</span>
+</pre></div>
+
+<ul>
+<li>Register with Push IO<br>
+</li>
+</ul><p>You can register a device with Push IO one of two ways. First, if your application gives users a way to specify a preference or favorite, you may want to register for that category you can you push to them relevant content. Note that the PushIOManager has two callbacks that can be optionally implemented that allow you to deal with success and errors. Additionally success and error is logged under the “pushio” tag. </p>
+
+<p>This kind of registration would be tied to a notification UI, allowing the user to select categories.</p>
+
+<div class="highlight"><pre>        <span class="c1">// Register for US and World Headlines</span>
+    <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
+        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">categories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+    <span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"US"</span><span class="o">);</span>
+    <span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"World"</span><span class="o">);</span>
+    <span class="n">pushIOManager</span><span class="o">.</span><span class="na">registerCategories</span><span class="o">(</span> <span class="n">categories</span><span class="o">,</span> <span class="kc">false</span> <span class="o">);</span>
+
+
+        <span class="c1">// Unregister for US Headlines</span>
+        <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
+        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">categories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+    <span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"US"</span><span class="o">);</span>
+    <span class="n">pushIOManager</span><span class="o">.</span><span class="na">unregisterCategories</span><span class="o">(</span> <span class="n">categories</span><span class="o">,</span> <span class="kc">false</span> <span class="o">);</span>
+</pre></div>
+
+<p>If you just want to be able to broadcast to all your users at once, you can simple call ensureRegistration (on application startup). To unregister a device simply call unregisterDevice. </p>
+
+<div class="highlight"><pre>        <span class="c1">// Unregister device</span>
+    <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
+        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">pushIOManager</span><span class="o">.</span><span class="na">unregisterDevice</span><span class="o">();</span>
+</pre></div>
+
+<ul>
+<li>Handle Push<br>
+</li>
+</ul><p>In Android there are two ways to handle push notifications, you can use the PushIOManager built-in notifications, or you can implement them on your own. </p>
+
+<p>For built-in notifications simply leave the last parameter null when creating the PushIOManager. When creating a new notification the PushIOManager will grab icon by name from you application drawables and the sound from your application resources. To handle notification presses you need to register a new intent filter for the action “com.example.NOTIFICATIONPRESSED”, with the “android.intent.category.DEFAULT” category specified in your Android Manifest. This filter will call your activity on a notification press. </p>
+
+<div class="highlight"><pre>  <span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"NewsActivity"</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">action</span>         <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.NOTIFICATIONPRESSED"</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">category</span>   <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.intent.category.DEFAULT"</span><span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">activity</span><span class="o">&gt;</span>
+</pre></div>
+
+<p>To handle notification yourself, you need to create your won Broadcast Receiver and register it for the PUSHIOPUSH action. </p>
+
+<div class="highlight"><pre>        <span class="o">&lt;</span><span class="n">receiver</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.NotificationBroadcastReceiver"</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">action</span>  <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.PUSHIOPUSH"</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">category</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">receiver</span><span class="o">&gt;</span>
+</pre></div>
+
+<p>This custom receiver allows you to handle the push in any way you see fit, it is however important that you respond to broadcast to let the Push IO Manager know how you are handling the operation (so we can properly track engagements). You do this by setting an integer on the broadcast receiver result as follows.</p>
+
+<div class="highlight"><pre>        <span class="n">Bundle</span> <span class="n">extras</span> <span class="o">=</span> <span class="n">getResultExtras</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">extras</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_STATUS</span><span class="o">,</span>  <span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_HANDLED_NOTIFICATION</span><span class="o">);</span>
+        <span class="n">setResultExtras</span><span class="o">(</span><span class="n">extras</span><span class="o">);</span>
+</pre></div>
+
+<p>Congratulations, that's all there is to it! You should now be ready to test your Android integration.</p>
+
+<p>If you need further assistance, please visit our <a href="http://pushio.zendesk.com">support site</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/pushio">pushio</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-16817212-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
