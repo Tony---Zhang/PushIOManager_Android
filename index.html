@@ -30,12 +30,12 @@
       <section>
         <p><img src="http://push.io/wp-content/uploads/2012/05/pushio_logo.png" alt="Push IO®"></p>
 
-<p>Copyright © 2009 - 2012 Push IO LLC. All Rights Reserved.<br>
+<p>Copyright © 2009 - 2012 Push IO LLC. All Rights Reserved.
 Push IO® is a registered trademark in the United States. All other trademarks are the property of their respective owners.</p>
 
 <h4>Software License Information</h4>
 
-<p>The use of any and all Push IO software regardless of release state is governed by the terms of a Software License Agreement and Terms of Use that are not included here but required by reference. </p>
+<p>The use of any and all Push IO software regardless of release state is governed by the terms of a Software License Agreement and Terms of Use that are not included here but required by reference.</p>
 
 <h4>Privacy Information</h4>
 
@@ -47,10 +47,12 @@ Push IO® is a registered trademark in the United States. All other trademarks a
 
 <h4>Contact Info</h4>
 
-<p>Push IO<br>
-1035 Pearl Street, Suite 400<br>
-Boulder, CO 80302 USA<br>
-303-335-0903<br><a href="mailto:support@push.io">support@push.io</a><br><a href="http://www.push.io">www.push.io</a>   </p>
+<p>Push IO
+1035 Pearl Street, Suite 400
+Boulder, CO 80302 USA
+303-335-0903
+<a href="mailto:support@push.io">support@push.io</a>
+<a href="http://www.push.io">www.push.io</a></p>
 
 <h2>Preface</h2>
 
@@ -64,7 +66,7 @@ Boulder, CO 80302 USA<br>
 
 <h4>Category</h4>
 
-<p>A category defines a specific content type that your app has which users might  be interested in. For example, if your app is a sports app, a category may be a specific team. </p>
+<p>A category defines a specific content type that your app has which users might be interested in. For example, if your app is a sports app, a category may be a specific team.</p>
 
 <h4>Audience</h4>
 
@@ -78,7 +80,7 @@ Boulder, CO 80302 USA<br>
 
 <h4>Overview</h4>
 
-<p>Push IO provides a lightweight PushIOManager library for each supported platform. </p>
+<p>Push IO provides a lightweight PushIOManager library for each supported platform.</p>
 
 <p>The library provides simple methods for registering so Push IO can send push notifications to a device via the platform gateway. The library also provides interfaces for segmenting your users into groups called categories. This allows you to send targeted push notifications only to those users who have expressed an interest in <em>bird watching</em>, and then perhaps only users who are interested in <em>robins</em>.</p>
 
@@ -105,118 +107,169 @@ Boulder, CO 80302 USA<br>
 
 <p>In order to add the PushIOManager JAR to your Android application, follow these simple steps:</p>
 
-<ul>
-<li>Locate the two files you downloaded from Set Up &gt; Android from the Push IO Manager dashboard.</li>
-</ul><p><img src="http://pushiocdn.s3.amazonaws.com/docs_assets/files_android.png" alt="Downloads"></p>
+<h3>Locate the two files you downloaded from Set Up &gt; Android from the Push IO Manager dashboard.</h3>
 
-<ul>
-<li><p>Add the PushIOManager.jar to your project’s libs folder.</p></li>
-<li><p>Drag pushio_config.json file to your project.</p></li>
-</ul><blockquote>
-<p>The pushio_config.json must be in your application bundle in order for the PushIOManager read your API key and properly connect to the backend service.</p>
-</blockquote>
+<p><img src="http://pushiocdn.s3.amazonaws.com/docs_assets/files_android.png" alt="Downloads"></p>
 
-<ul>
-<li>Now you need to set up your Android Manifest. The following user-permissions are required to use Google Cloud Messaging (replace com.example with your application namespace). </li>
-</ul><div class="highlight"><pre>    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span>  <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.permission.C2D_MESSAGE"</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.permission.INTERNET"</span><span class="o">/&gt;</span>
+<h3>Add the PushIOManager.jar to your project’s libs folder.</h3>
 
-     <span class="o">&lt;</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.permission.C2D_MESSAGE"</span> <span class="nl">android:</span><span class="n">protectionLevel</span><span class="o">=</span><span class="s">"signature"</span> <span class="o">/&gt;</span>
+<h3>Drag pushio_config.json file to your project's assets folder.</h3>
+
+<h3>Now you need to set up your Android Manifest.</h3>
+
+<p>The following user-permissions are required to use Google Cloud Messaging (replace com.example with your application namespace).</p>
+
+<div class="highlight"><pre><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.example.permission.C2D_MESSAGE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;permission</span> <span class="na">android:name=</span><span class="s">"com.example.permission.C2D_MESSAGE"</span> <span class="na">android:protectionLevel=</span><span class="s">"signature"</span> <span class="nt">/&gt;</span>
 </pre></div>
 
-<ul>
-<li>In the Android Manifest under the “application” tag you need to set up the PushIOBroadcastReceiver. (Once again replace com.example for your application namespace.)</li>
-</ul><blockquote>
-<p>Even though Google has moved from C2DM to CCM the permissions still use the   c2dm name for backward compatibility with older devices.</p>
-</blockquote>
+<p>In the Android Manifest under the “application” tag you need to set up the PushIOBroadcastReceiver. (Once again replace com.example for your application namespace.)</p>
 
-<div class="highlight"><pre><span class="o">&lt;</span><span class="n">receiver</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOBroadcastReceiver"</span> <span class="nl">android:</span><span class="n">permission</span><span class="o">=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="n">action</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="o">/&gt;</span>
-                <span class="o">&lt;</span><span class="n">action</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.google.android.c2dm.intent.REGISTRATION"</span> <span class="o">/&gt;</span>
-                <span class="o">&lt;</span><span class="n">category</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example"</span> <span class="o">/&gt;</span>
-            <span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">receiver</span><span class="o">&gt;</span>
+<p><em>Even though Google has moved from C2DM to CCM the permissions still use the c2dm name for backward compatibility with older devices.</em></p>
 
-        <span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOActivityLauncher"</span><span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="n">service</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOGCMIntentService"</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="n">service</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.pushio.manager.PushIOEngagementService"</span><span class="o">/&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;receiver</span> <span class="na">android:name=</span><span class="s">"com.pushio.manager.PushIOBroadcastReceiver"</span> <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;intent-filter&gt;</span>
+<span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.REGISTRATION"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"com.example"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+
+<span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"com.pushio.manager.PushIOActivityLauncher"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"com.pushio.manager.PushIOGCMIntentService"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"com.pushio.manager.PushIOEngagementService"</span><span class="nt">/&gt;</span>
 </pre></div>
 
-<ul>
-<li>Set-up the ensureRegistration call when the application is first starting. This will ensure that registration is maintained between upgrades of the application. </li>
-</ul><div class="highlight"><pre>     <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
-        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-      <span class="n">pushIOManager</span><span class="o">.</span><span class="na">ensureRegistration</span><span class="o">();</span>
+<h3>Call ensureRegistration() when the application is first starting.</h3>
+
+<p>This will ensure that registration is maintained between upgrades of the application. </p>
+
+<div class="highlight"><pre><span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span>
+<span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">pushIOManager</span><span class="o">.</span><span class="na">ensureRegistration</span><span class="o">();</span>
 </pre></div>
 
-<ul>
-<li>Register with Push IO<br>
-</li>
-</ul><p>You can register a device with Push IO one of two ways. First, if your application gives users a way to specify a preference or favorite, you may want to register for that category you can you push to them relevant content. Note that the PushIOManager has two callbacks that can be optionally implemented that allow you to deal with success and errors. Additionally success and error is logged under the “pushio” tag. </p>
+<h3>Register with Push IO</h3>
+
+<p>You can register a device with Push IO one of two ways. First, if your application gives users a way to specify a preference or favorite, you may want to register for that category you can you push to them relevant content. Note that the PushIOManager has two callbacks that can be optionally implemented that allow you to deal with success and errors. Additionally success and error is logged under the “pushio” tag.</p>
 
 <p>This kind of registration would be tied to a notification UI, allowing the user to select categories.</p>
 
-<div class="highlight"><pre>        <span class="c1">// Register for US and World Headlines</span>
-    <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
-        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">categories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-    <span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"US"</span><span class="o">);</span>
-    <span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"World"</span><span class="o">);</span>
-    <span class="n">pushIOManager</span><span class="o">.</span><span class="na">registerCategories</span><span class="o">(</span> <span class="n">categories</span><span class="o">,</span> <span class="kc">false</span> <span class="o">);</span>
-
-
-        <span class="c1">// Unregister for US Headlines</span>
-        <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
-        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">categories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-    <span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"US"</span><span class="o">);</span>
-    <span class="n">pushIOManager</span><span class="o">.</span><span class="na">unregisterCategories</span><span class="o">(</span> <span class="n">categories</span><span class="o">,</span> <span class="kc">false</span> <span class="o">);</span>
+<div class="highlight"><pre><span class="c1">// Register for US and World Headlines</span>
+<span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span>
+<span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">categories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"US"</span><span class="o">);</span>
+<span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"World"</span><span class="o">);</span>
+<span class="n">pushIOManager</span><span class="o">.</span><span class="na">registerCategories</span><span class="o">(</span> <span class="n">categories</span><span class="o">,</span> <span class="kc">false</span> <span class="o">);</span>
 </pre></div>
 
-<p>If you just want to be able to broadcast to all your users at once, you can simple call ensureRegistration (on application startup). To unregister a device simply call unregisterDevice. </p>
-
-<div class="highlight"><pre>        <span class="c1">// Unregister device</span>
-    <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> 
-        <span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-    <span class="n">pushIOManager</span><span class="o">.</span><span class="na">unregisterDevice</span><span class="o">();</span>
+<div class="highlight"><pre><span class="c1">// Unregister for US Headlines</span>
+<span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span>
+<span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">categories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">categories</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"US"</span><span class="o">);</span>
+<span class="n">pushIOManager</span><span class="o">.</span><span class="na">unregisterCategories</span><span class="o">(</span> <span class="n">categories</span><span class="o">,</span> <span class="kc">false</span> <span class="o">);</span>
 </pre></div>
 
-<ul>
-<li>Handle Push<br>
-</li>
-</ul><p>In Android there are two ways to handle push notifications, you can use the PushIOManager built-in notifications, or you can implement them on your own. </p>
+<p>If you just want to be able to broadcast to all your users at once, you can simple call ensureRegistration (on application startup). To unregister a device simply call unregisterDevice.</p>
 
-<p>For built-in notifications simply leave the last parameter null when creating the PushIOManager. When creating a new notification the PushIOManager will grab icon by name from you application drawables and the sound from your application resources. To handle notification presses you need to register a new intent filter for the action “com.example.NOTIFICATIONPRESSED”, with the “android.intent.category.DEFAULT” category specified in your Android Manifest. This filter will call your activity on a notification press. </p>
-
-<div class="highlight"><pre>  <span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"NewsActivity"</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="n">action</span>         <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.NOTIFICATIONPRESSED"</span><span class="o">/&gt;</span>
-                <span class="o">&lt;</span><span class="n">category</span>   <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.intent.category.DEFAULT"</span><span class="o">/&gt;</span>
-            <span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">activity</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span class="c1">// Unregister device</span>
+<span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span>
+<span class="k">new</span> <span class="nf">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">pushIOManager</span><span class="o">.</span><span class="na">unregisterDevice</span><span class="o">();</span>
 </pre></div>
 
-<p>To handle notification yourself, you need to create your won Broadcast Receiver and register it for the PUSHIOPUSH action. </p>
+<h3>Handle Push</h3>
 
-<div class="highlight"><pre>        <span class="o">&lt;</span><span class="n">receiver</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.NotificationBroadcastReceiver"</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="n">action</span>  <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.example.PUSHIOPUSH"</span><span class="o">/&gt;</span>
-                <span class="o">&lt;</span><span class="n">category</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="o">/&gt;</span>
-            <span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="n">filter</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">receiver</span><span class="o">&gt;</span>
+<p>In Android push notifications are broadcast using the action “com.example.PUSHIOPUSH”, if you don’t handle this broadcast the Push IO Manager will create a standard notification for you (using the badge name and sound name to to gather the proper resources from your application assets. If you don’t need anything fancy you can skip this section and move down to “Handling Push Intents”.</p>
+
+<p>For custom notification you need to register a broadcast receiver in your android manifest. </p>
+
+<div class="highlight"><pre>        <span class="nt">&lt;receiver</span> <span class="na">android:name=</span><span class="s">"com.example.NotificationBroadcastReceiver"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span>  <span class="na">android:name=</span><span class="s">"com.example.PUSHIOPUSH"</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/receiver&gt;</span> 
 </pre></div>
 
-<p>This custom receiver allows you to handle the push in any way you see fit, it is however important that you respond to broadcast to let the Push IO Manager know how you are handling the operation (so we can properly track engagements). You do this by setting an integer on the broadcast receiver result as follows.</p>
+<p>From this broadcast receiver you can direct the push anywhere you would like, a common practice is to create an intent service that creates the notification. It is important that this broadcast receiver registers with the Push IO Manager that it is handling the notification so the Push IO Manager doesn’t create a duplicate notification. </p>
 
-<div class="highlight"><pre>        <span class="n">Bundle</span> <span class="n">extras</span> <span class="o">=</span> <span class="n">getResultExtras</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-        <span class="n">extras</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_STATUS</span><span class="o">,</span>  <span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_HANDLED_NOTIFICATION</span><span class="o">);</span>
+<div class="highlight"><pre>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">CustomNotificationService</span><span class="o">.</span><span class="na">runIntentInService</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">intent</span><span class="o">);</span>
+        <span class="n">Bundle</span> <span class="n">extras</span> <span class="o">=</span> <span class="n">getResultExtras</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">extras</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_STATUS</span><span class="o">,</span> <span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_HANDLED_NOTIFICATION</span><span class="o">);</span>
         <span class="n">setResultExtras</span><span class="o">(</span><span class="n">extras</span><span class="o">);</span>
+    <span class="o">}</span>
+</pre></div>
+
+<p>It is recommended that you use the PushIOActivityLauncher for the pending activities of your notifications. Using this class will automatically handle push engagement tracking for you. The PushIOActivityLauncher expects you to pass the notification intent (from the broadcast receiver) as extras. </p>
+
+<div class="highlight"><pre>            <span class="n">Intent</span> <span class="n">newIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">PushIOActivityLauncher</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+            <span class="n">newIntent</span><span class="o">.</span><span class="na">putExtras</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+            <span class="n">PendingIntent</span> <span class="n">lPendingIntent</span> <span class="o">=</span> <span class="n">PendingIntent</span><span class="o">.</span><span class="na">getActivity</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">newIntent</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</pre></div>
+
+<p>In certain activities in your application you may not want to show status bar notifications, but instead handle the push in-app. The best way to do this is to register a broadcast receiver on the onResume() of your activity, and unregister the receiver on the activitie's onPause().  The following example creates a local broadcast receiver, handles the push, and tells the Push IO Manager that the push was handled “in-app”. This will automatically track the in-app engagement and prevent the Push IO Manager from creating a custom notification. this.abortBroadcast() is used to stop the broadcast from hitting the application wide “NotificationBroadcastReceiver”. </p>
+
+<div class="highlight"><pre><span class="n">mBroadcastReceiver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BroadcastReceiver</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">String</span> <span class="n">alert</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">"alert"</span><span class="o">);</span>
+                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">lContext</span><span class="o">,</span> <span class="n">alert</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+
+                <span class="n">Bundle</span> <span class="n">extras</span> <span class="o">=</span> <span class="n">getResultExtras</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="n">extras</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_STATUS</span><span class="o">,</span> <span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSH_HANDLED_IN_APP</span><span class="o">);</span>
+                <span class="n">setResultExtras</span><span class="o">(</span><span class="n">extras</span><span class="o">);</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">abortBroadcast</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+        <span class="n">registerReceiver</span><span class="o">(</span> <span class="n">mBroadcastReceiver</span><span class="o">,</span> <span class="k">new</span> <span class="n">IntentFilter</span><span class="o">(</span><span class="s">"com.pushio.dashboard.PUSHIOPUSH"</span><span class="o">)</span> <span class="o">);</span>
+</pre></div>
+
+<p>On the onPause() call:</p>
+
+<div class="highlight"><pre>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">(){</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>
+
+        <span class="n">unregisterReceiver</span><span class="o">(</span><span class="n">mBroadcastReceiver</span><span class="o">);</span>
+    <span class="o">}</span>
+</pre></div>
+
+<h3>Handling Notification Pressed Intents</h3>
+
+<p>When a notification is pressed and is using the PushIOActivityLauncher an intent is launched for the action "com.example.NOTIFICATIONPRESSED". To handle this action you need to register an intent filter in your AndroidManaifest.xml</p>
+
+<div class="highlight"><pre><span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"com.example.myactivity"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.example.NOTIFICATIONPRESSED"</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/activity&gt;</span>
 </pre></div>
 
 <p>Congratulations, that's all there is to it! You should now be ready to test your Android integration.</p>
+
+<h3>Advanced Engagements</h3>
+
+<p>"Launch" and "Active Session" engagements are handled for you. To track other engagements you need to call trackEngagement, passing one of the "PUSHIO_ENGAGEMENT_METRIC" constants found in the PushIOManager. </p>
+
+<div class="highlight"><pre>        <span class="n">pushIOManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="n">pushIOManager</span><span class="o">.</span><span class="na">ensureRegistration</span><span class="o">();</span>
+        <span class="n">pushIOManager</span><span class="o">.</span><span class="na">trackEngagement</span><span class="o">(</span><span class="n">PushIOManager</span><span class="o">.</span><span class="na">PUSHIO_ENGAGEMENT_METRIC_PREMIUM_CONTENT</span><span class="o">);</span>
+</pre></div>
+
+<p>When the session is ending it is important to clear the EngagementId. </p>
+
+<div class="highlight"><pre>        <span class="n">PushIOManager</span> <span class="n">pushIOManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PushIOManager</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="n">pushIOManager</span><span class="o">.</span><span class="na">resetEID</span><span class="o">();</span>
+</pre></div>
 
 <p>If you need further assistance, please visit our <a href="http://pushio.zendesk.com">support site</a>.</p>
       </section>
