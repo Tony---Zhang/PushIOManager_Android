@@ -8,12 +8,52 @@
 #### Support for FCM
 With the release of 6.38.1, the SDK is compatible with FCM (Firebase Cloud Messaging). If you wish to use FCM libraries in your app, it is recommended that you remove the GCM library dependency and vice-versa.
 
+Here are some documents for FCM support
+
+##### 1. Dependence
 ```
 dependencies {
 	// implementation 'com.google.android.gms:play-services-gcm:15.0.1'
 	implementation 'com.google.firebase:firebase-messaging:17.3.2'
 }
 ``` 
+
+##### 2. Proguard config
+Add this line to your proguard prevent proguard issue
+```
+# PushIO
+-dontwarn com.pushio.manager.PIOInstanceIDListenerService
+```
+
+##### 3. Manifest declaration
+Remove these two permissions, FCM will add them automatically
+
+~~<uses-permission android:name="com.google.android.c2dm.permisson.RECEIVE" />~~
+
+~~<uses-permission android:name="android.permission.WAKE_LOCK" />~~
+
+Remove this old service in your Manifest
+```
+<service
+    android:name="com.pushio.manager.PIOInstanceIDListenerService"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.google.android.gms.iid.InstanceID" />
+    </intent-filter>
+</service>
+```
+
+Add this new service in your Manifest
+```
+<service
+    android:name="com.pushio.manager.PIOFCMIntentService"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+    </intent-filter>
+</service>
+```
 
 ### Upgrading SDK to 6.38
 #### New API for SDK Crash Reporting
